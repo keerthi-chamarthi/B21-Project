@@ -32,7 +32,7 @@
             <br>
             <br>
             <br>
-            <button [disabled]="!signupForm.form.valid" type="submit" (click)="signUp(signupForm.value)" class="btn" id="btn-signUp ">
+            <button [style.backgroundColor]=" signupForm.form.valid ? 'rgb(94, 121, 243)':'lightgrey'" type="submit" (click)="signUp(signupForm.value)" class="btn" id="btn-signUp ">
             Sign Up
             </button>
         </form>
