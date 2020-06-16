@@ -8,20 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public a = [' '];
-  email: string;
-  password: string;
-  displayName: string;
+  email = '';
+  password = '';
+  displayName = '';
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  signUp() {
-    // const email = this.email;
-    // const password = this.password;
-    // const displayName = this.displayName;
-    // this.router.navigate(['/trade']);
-    // this.handleResponse(this.displayName);
-    this.router.navigate(['/trade', String(this.a[0])], {
+  signUp(p) {
+    this.router.navigate(['/trade', String(p.displayName)], {
       skipLocationChange: true,
     });
   }

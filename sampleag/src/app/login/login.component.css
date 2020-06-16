@@ -1,7 +1,7 @@
 .container {
     /* overflow: hidden;
     background: linear-gradient( 45deg, rgba(0, 103, 255, 0.3), rgba(0, 150, 80, 0.9)); */
-    display:flex;
+    display: flex;
     height: 100%;
     justify-content: center;
     margin: 0;
@@ -20,12 +20,11 @@
     padding: 80px 30px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.17), 0 1px 2px rgba(0, 0, 0, 0.24); */
     /* overflow: hidden; */
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color:white;
+    background-color: white;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 16px;
@@ -39,12 +38,12 @@
     box-sizing: border-box;
 }
 
-.input1{
+.input1 {
     display: flex;
     width: 400px;
 }
 
-.input1 > button{
+.input1>button {
     height: 40px;
     border-radius: 4px 0 0 4px;
     /* border-style: none; */
@@ -53,6 +52,7 @@
     border-right: none;
     /* width: 10%; */
 }
+
 .formInput {
     /* display: block; */
     width: 100%;
@@ -68,9 +68,6 @@
     font-family: 'Exo', sans-serif;
 }
 
-.font{
-    /* margin-left: -8%; */
-}
 .btn {
     /* height: 54px;
     margin-top: 32px;
@@ -84,7 +81,6 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.17), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: ease-in 0.2s;
     width: 100%; */
-
     padding: 13px;
     width: 60%;
     font-size: medium;
@@ -98,6 +94,7 @@
     margin-left: 20%;
     font-family: 'Exo', sans-serif;
 }
+
 #btn-signUp:hover {
     background-color: #4a4865;
     transition: ease-in 0.2s;
@@ -122,6 +119,7 @@ a {
     float: left;
     font-weight: bold;
 }
+
 @media screen and (max-width: 500px) {
     .signUpCard {
         margin-top: 0px;
@@ -129,7 +127,7 @@ a {
         margin-bottom: 0px;
         padding: 0;
     }
-    .input1{
+    .input1 {
         width: 300px;
     }
 }
