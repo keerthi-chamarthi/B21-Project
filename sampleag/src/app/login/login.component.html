@@ -8,7 +8,7 @@
                 <button><i class="fa fa-envelope icon font"></i></button>
                 <input type="email" name="email" placeholder="example@email.com" [(ngModel)]="email" class="formInput" maxlength="60" required />
             </div>
-            
+
 
             <label class="label">Password</label><br>
             <div class="input1">
@@ -20,14 +20,14 @@
             }"
             (click)="toggleFieldTextType()"
           ></i></button>
-            <input [type]="fieldTextType ? 'text' : 'password'" name="password" placeholder="Choose a password" [(ngModel)]="password" class="formInput" required />
+                <input [type]="fieldTextType ? 'text' : 'password'" name="password" placeholder="Choose a password" [(ngModel)]="password" class="formInput" required />
             </div>
-             
+
 
             <label class="label">Display Name</label><br>
             <div class="input1">
                 <button><i class="fa fa-user icon font"></i></button>
-                <input name="displayName" placeholder="Enter a display name" [(ngModel)]="displayName" class="formInput" minlength="6" required />
+                <input name="displayName" placeholder="Enter a display name" [(ngModel)]="displayName" class="formInput" minlength="6" [(ngModel)]="a[0]" required />
             </div>
             <br>
             <br>
