@@ -1,0 +1,19 @@
+.fa-eye-slash:hover,
+.fa-eye:hover {
+    cursor: pointer;
+}
+
+.container-table {
+    display: table;
+    height: 100%;
+}
+
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.card {
+    // height: 500px;
+    background-color: lightgray;
+}
