@@ -26,21 +26,18 @@ async sendInfo(user: string, passkey: string){
       //   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       //   }
     });
-    let resp = await instance.post("/api/user/individual/profile", {
-      Username: user,
-      Password: passkey
-    })
-    //  .then(response => {
-    //    console.log(response.data);
-    //    this.values = response.data
-    //    console.log(this.values);
-    //  });
-    this.values = resp.data;
-    console.log(resp.data);
-     return this.values.ResponseCode;
+    try{
+      let resp = await instance.post("/api/auth/user/login", {
+        Username: user,
+        Password: passkey
+      })
+      this.values = resp.data;
+      console.log(resp.data);
+       return this.values.ResponseCode;
+    }
+    catch(err){
+      console.log(err);
+      return 401;
+    }
   }
-  // getValues(): string{
-    
-  //   return this.values.ResponseCode;
-  // }
 }
