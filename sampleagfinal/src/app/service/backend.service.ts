@@ -16,7 +16,6 @@ export class BackendService implements OnInit{
     
   }
 
-
 async sendInfo(user: string, passkey: string){
     const instance = axios.create({
       // baseURL: "/api",
@@ -26,21 +25,34 @@ async sendInfo(user: string, passkey: string){
       //   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       //   }
     });
-    let resp = await instance.post("/api/user/individual/profile", {
+    // let resp = await instance.post("/api/auth/user/login", {
+    //   Username: user,
+    //   Password: passkey
+    // })
+    
+
+    // this.values = resp.data;
+    // console.log(resp.data);
+    //  return this.values.ResponseCode;
+
+    var config = {
+      "headers": {
+          "Authorization": "Bearer 5ZPhT2Sxmj9E2F7ZhJU6MZILsFW4M4j1"
+      }
+  };
+
+    let resp = await axios.all ([instance.post("/api/auth/user/login", {
       Username: user,
       Password: passkey
-    })
-    //  .then(response => {
-    //    console.log(response.data);
-    //    this.values = response.data
-    //    console.log(this.values);
-    //  });
-    this.values = resp.data;
-    console.log(resp.data);
+    }),
+    axios.get("/api/user/individual/profile", config
+    )
+  ]);
+    this.values = resp[0].data;
+    console.log(resp[0].data);
+    console.log(resp[1].data);
      return this.values.ResponseCode;
+
   }
-  // getValues(): string{
-    
-  //   return this.values.ResponseCode;
-  // }
+  
 }
