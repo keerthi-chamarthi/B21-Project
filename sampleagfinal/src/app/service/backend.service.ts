@@ -16,28 +16,32 @@ export class BackendService implements OnInit{
     
   }
 
-
 async sendInfo(user: string, passkey: string){
-    const instance = axios.create({
-      // baseURL: "/api",
-      // withCredentials: false,
-      // headers: {
-      //   'Access-Control-Allow-Origin' : '*',
-      //   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      //   }
-    });
-    try{
-      let resp = await instance.post("/api/auth/user/login", {
-        Username: user,
-        Password: passkey
-      })
-      this.values = resp.data;
-      console.log(resp.data);
-       return this.values.ResponseCode;
-    }
-    catch(err){
-      console.log(err);
-      return 401;
-    }
+    const instance = axios.create({});
+    var config = {
+      "headers": {
+          "Authorization": "Bearer 5ZPhT2Sxmj9E2F7ZhJU6MZILsFW4M4j1"
+      }
+  };
+  try{
+      let resp = await axios.all ([instance.post("/api/auth/user/login", {
+      Username: user,
+      Password: passkey
+    }),
+    axios.get("/api/user/individual/profile", config
+    )
+  ]);
+    this.values = resp[0].data;
+    console.log(resp[0].data);
+    console.log(resp[1].data);
+     return this.values.ResponseCode;
+
   }
+  catch(err)
+  {
+    console.log(err);
+    return 401;
+  }
+  
+}
 }

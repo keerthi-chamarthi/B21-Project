@@ -49,10 +49,8 @@ export class LoginFormComponent implements OnInit {
   }
   async getData(data){
     await this.getInfo(data);
-    console.log("navigation");
     this.router.navigate(['/trade', String(data.displayName)+this.result], {
       skipLocationChange: true,
     });
-    console.log("button clicked "+data.email+ " "+ data.password+" "+data.displayName);
   }
 }
