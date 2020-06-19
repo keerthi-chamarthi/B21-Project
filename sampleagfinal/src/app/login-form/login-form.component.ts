@@ -41,9 +41,8 @@ export class LoginFormComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       displayName: ['', Validators.required]
-
     });
-    
+    // this.getData(this.registrationForm);
   }
   async getInfo(data){
     this.result = await this.backend.sendInfo(data.email, data.password);   

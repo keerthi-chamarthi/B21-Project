@@ -17,31 +17,14 @@ export class BackendService implements OnInit{
   }
 
 async sendInfo(user: string, passkey: string){
-    const instance = axios.create({
-      // baseURL: "/api",
-      // withCredentials: false,
-      // headers: {
-      //   'Access-Control-Allow-Origin' : '*',
-      //   'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      //   }
-    });
-    // let resp = await instance.post("/api/auth/user/login", {
-    //   Username: user,
-    //   Password: passkey
-    // })
-    
-
-    // this.values = resp.data;
-    // console.log(resp.data);
-    //  return this.values.ResponseCode;
-
+    const instance = axios.create({});
     var config = {
       "headers": {
           "Authorization": "Bearer 5ZPhT2Sxmj9E2F7ZhJU6MZILsFW4M4j1"
       }
   };
-
-    let resp = await axios.all ([instance.post("/api/auth/user/login", {
+  try{
+      let resp = await axios.all ([instance.post("/api/auth/user/login", {
       Username: user,
       Password: passkey
     }),
@@ -54,5 +37,11 @@ async sendInfo(user: string, passkey: string){
      return this.values.ResponseCode;
 
   }
+  catch(err)
+  {
+    console.log(err);
+    return 401;
+  }
   
+}
 }
