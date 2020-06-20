@@ -6,6 +6,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { User } from '../user';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -29,6 +30,7 @@ export class LoginFormComponent implements OnInit {
   // }
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {}
   result: any;
+  details : User;
   ngOnInit(): void {
     this.initRegForm();
   }
@@ -45,11 +47,17 @@ export class LoginFormComponent implements OnInit {
     // this.getData(this.registrationForm);
   }
   async getInfo(data){
-    this.result = await this.backend.sendInfo(data.email, data.password);   
+    this.result = await this.backend.sendInfo(data.email, data.password);
+    // console.log(this.result.Address);   
+    // this.details.Address=this.result.Address;
+    // this.details.BirthDate = this.result.BirthDate;
+    // this.details.DisplayName = this.result.DisplayName;
+    // this.details.EmailId = this.result.EmailId;
   }
   async getData(data){
     await this.getInfo(data);
-    this.router.navigate(['/trade', String(data.displayName)+this.result], {
+    // console.log(this.details.Address);
+    this.router.navigate(['/trade',JSON.stringify(this.result)], {
       skipLocationChange: true,
     });
   }

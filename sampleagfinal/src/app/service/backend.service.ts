@@ -20,7 +20,7 @@ async sendInfo(user: string, passkey: string){
     const instance = axios.create({});
     var config = {
       "headers": {
-          "Authorization": "Bearer 5ZPhT2Sxmj9E2F7ZhJU6MZILsFW4M4j1"
+          "Authorization": "Bearer YsqC7eThciFrGzWjBmo9bdx7MifbPIpt"
       }
   };
   try{
@@ -28,14 +28,15 @@ async sendInfo(user: string, passkey: string){
       Username: user,
       Password: passkey
     }),
-    axios.get("/api/user/individual/profile", config
-    )
+    axios.get("/api/user/individual/profile", config)
   ]);
     this.values = resp[0].data;
     console.log(resp[0].data);
     console.log(resp[1].data);
-     return this.values.ResponseCode;
-
+    if(this.values.ResponseCode == 200)
+    {
+      return resp[1].data.ResponseData;
+    }
   }
   catch(err)
   {

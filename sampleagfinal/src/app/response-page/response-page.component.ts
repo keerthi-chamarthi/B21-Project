@@ -8,12 +8,23 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class ResponsePageComponent implements OnInit {
   faUser = faUser;
+  public data;
   public displayName: string = '';
+  public email : string;
+  public address : string;
+  public birthdate : string;
   constructor(private obj: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.obj.paramMap.subscribe(
-      (params: ParamMap) => (this.displayName = String(params.get('name')))
+      (params: ParamMap) => (this.data = params.get('name'))
     );
+    // this.displayName = this.data.DisplayName;
+    this.data = JSON.parse(this.data);
+    console.log(this.data);
+    this.displayName = this.data.DisplayName;
+    this.address = this.data.Address;
+    this.email = this.data.EmailID;
+    this.birthdate = this.data.BirthDate;
   }
 }
