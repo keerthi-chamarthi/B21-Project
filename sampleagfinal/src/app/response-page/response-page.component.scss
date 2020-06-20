@@ -1,0 +1,30 @@
+.profile-header {
+    transform: translateY(5rem);
+}
+
+@media screen and (max-width: 500px) {
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
+    }
+}

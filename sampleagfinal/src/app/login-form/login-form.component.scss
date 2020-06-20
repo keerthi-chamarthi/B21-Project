@@ -1,56 +1,13 @@
-.container-table {
-    display: table;
-    height: 100%;
-}
-
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
-}
-
 .card {
     height: 600px;
 }
 
-.input-group {
-    width: 50vh;
-}
-
-.col-12 {
-    padding: 0;
-}
-
-.container {
-    padding: 0;
-}
-
 .card-body {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 @media screen and (max-width: 500px) {
     .card {
         height: 100vh;
-        display: flex;
-    }
-    .container {
-        margin: 0;
-    }
-    .input-group {
-        width: 40vh;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .input-group {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .input-group {
-        width: 100%;
     }
 }
