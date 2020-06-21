@@ -34,7 +34,24 @@ body {
     padding: 0;
 }
 
+.profile-header {
+    transform: translateY(5rem);
+}
+
+.nouser{
+    text-align: center;
+    // display: flex;
+    min-height: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    height: 600px;
+}
+
 .card-body {
+    display: flex;
     justify-content: space-around;
     align-items: center;
 }
@@ -42,6 +59,7 @@ body {
 @media screen and (max-width: 500px) {
     .card {
         display: flex;
+        height: 100vh;
     }
     .container {
         margin: 0;
@@ -55,10 +73,6 @@ body {
     }
     .profile-header-1 {
         transform: translateY(3rem);
-    }
-
-    .card{
-        min-height: 100vh;
     }
 }
 

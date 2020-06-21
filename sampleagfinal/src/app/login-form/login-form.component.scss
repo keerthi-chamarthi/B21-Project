@@ -1,13 +1,1 @@
-.card {
-    height: 600px;
-}
-
-.card-body {
-    display: flex;
-}
-
-@media screen and (max-width: 500px) {
-    .card {
-        height: 100vh;
-    }
-}
+@import '../../styles.scss';
