@@ -2,12 +2,27 @@
     transform: translateY(5rem);
 }
 
+.nouser{
+    text-align: center;
+    // display: flex;
+    min-height: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    min-height: 600px;
+}
 @media screen and (max-width: 500px) {
     .profile-header {
         transform: translateY(1rem);
     }
     .profile-header-1 {
         transform: translateY(3rem);
+    }
+
+    .card{
+        min-height: 100vh;
     }
 }
 

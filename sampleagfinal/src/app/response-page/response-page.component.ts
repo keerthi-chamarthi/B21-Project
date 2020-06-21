@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../user';
 @Component({
   selector: 'app-response-page',
   templateUrl: './response-page.component.html',
@@ -13,6 +14,7 @@ export class ResponsePageComponent implements OnInit {
   public email : string;
   public address : string;
   public birthdate : string;
+  public isLoggedIn : boolean =false;
   constructor(private obj: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -21,10 +23,15 @@ export class ResponsePageComponent implements OnInit {
     );
     // this.displayName = this.data.DisplayName;
     this.data = JSON.parse(this.data);
+    if(this.data == 401){
+      this.isLoggedIn = true;
+    }
+    let details = new User();
+    details=this.data;
+    this.displayName = details.DisplayName;
+    this.address = details.Address;
+    this.email = details.EmailId;
+    this.birthdate = details.BirthDate;
     console.log(this.data);
-    this.displayName = this.data.DisplayName;
-    this.address = this.data.Address;
-    this.email = this.data.EmailID;
-    this.birthdate = this.data.BirthDate;
   }
 }
