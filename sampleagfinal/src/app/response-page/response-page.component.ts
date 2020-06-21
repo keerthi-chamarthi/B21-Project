@@ -30,9 +30,9 @@ export class ResponsePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obj.paramMap.subscribe(
-      (params: ParamMap) => (this.data = params.get('name'))
-    );
+//this.obj.paramMap.subscribe(
+  //    (params: ParamMap) => (this.data = params.get('name'))
+    //);
     // this.displayName = this.data.DisplayName;
     
  
