@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
+*{
+    font-family: 'Exo', sans-serif;;
+}
 html,
 body {
     height: 100%;
@@ -46,16 +49,39 @@ body {
     .input-group {
         width: 40vh;
     }
+
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
+    }
+
+    .card{
+        min-height: 100vh;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .input-group {
         width: 100%;
     }
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
+    }
 }
 
 @media screen and (max-width: 1024px) {
     .input-group {
         width: 100%;
+    }
+    .profile-header {
+        transform: translateY(1rem);
+    }
+    .profile-header-1 {
+        transform: translateY(3rem);
     }
 }

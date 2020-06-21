@@ -3,6 +3,13 @@
         <div class="col-12 col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
+                    <div *ngIf="isLoggedIn; else elseBlock" class="nouser h-100 row align-items-center">
+                            <div class="col">
+                              <p><b>404 error</b></p>
+                              <p>User doesn't exist</p>
+                            </div>
+                    </div>
+                    <ng-template #elseBlock>
                     <div class="px-4 pt-0 pb-4 bg-dark">
                         <div class="media align-items-end profile-header">
                             <div class="profile mr-3">
@@ -40,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+                </ng-template>
                 </div>
             </div>
         </div>

@@ -30,7 +30,6 @@ export class LoginFormComponent implements OnInit {
   // }
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {}
   result: any;
-  details : User;
   ngOnInit(): void {
     this.initRegForm();
   }
@@ -48,16 +47,13 @@ export class LoginFormComponent implements OnInit {
   }
   async getInfo(data){
     this.result = await this.backend.sendInfo(data.email, data.password);
-    // console.log(this.result.Address);   
-    // this.details.Address=this.result.Address;
-    // this.details.BirthDate = this.result.BirthDate;
-    // this.details.DisplayName = this.result.DisplayName;
-    // this.details.EmailId = this.result.EmailId;
   }
   async getData(data){
     await this.getInfo(data);
-    // console.log(this.details.Address);
-    this.router.navigate(['/trade',JSON.stringify(this.result)], {
+    let details = new User();
+    details = this.result;
+    console.log(details);
+    this.router.navigate(['/trade',JSON.stringify(details)], {
       skipLocationChange: true,
     });
   }
