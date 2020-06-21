@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap,Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { User } from '../user';
 @Component({
@@ -15,14 +15,8 @@ export class ResponsePageComponent implements OnInit {
   public address : string;
   public birthdate : string;
   public isLoggedIn : boolean =false;
-  constructor(private obj: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.obj.paramMap.subscribe(
-      (params: ParamMap) => (this.data = params.get('name'))
-    );
-    // this.displayName = this.data.DisplayName;
-    this.data = JSON.parse(this.data);
+  constructor(private obj: ActivatedRoute,private rou: Router) {
+    this.data = (this.rou.getCurrentNavigation().extras.state);
     if(this.data == 401){
       this.isLoggedIn = true;
     }
@@ -33,5 +27,14 @@ export class ResponsePageComponent implements OnInit {
     this.email = details.EmailId;
     this.birthdate = details.BirthDate;
     console.log(this.data);
+  }
+
+  ngOnInit(): void {
+    this.obj.paramMap.subscribe(
+      (params: ParamMap) => (this.data = params.get('name'))
+    );
+    // this.displayName = this.data.DisplayName;
+    
+ 
   }
 }
