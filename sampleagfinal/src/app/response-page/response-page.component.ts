@@ -11,23 +11,22 @@ import { User } from '../models/user.model';
 export class ResponsePageComponent implements OnInit {
   faUser = faUser;
   public data;
-  public displayName: string = '';
-  public email : string;
-  public address : string;
-  public birthdate : string;
   public isLoggedIn : boolean =false;
+  details = new User();
   constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
     this.data = (this.rou.getCurrentNavigation().extras.state);
     if(this.data == 401){
       this.isLoggedIn = true;
     }
-    let details = new User();
-    details=this.data;
+    // let details = new User();
+    this.details=this.data;
     console.log(this.data);
-    console.log(details.DisplayName);
+    console.log(this.details.EmailID);
+    // console.log(this.details.DisplayName);
   }
 
   ngOnInit(): void {
     this.backend.updateInfo();
+    
   }
 }
