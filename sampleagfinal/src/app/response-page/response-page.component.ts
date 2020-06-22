@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap,Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { BackendService } from '../service/backend.service';
+// import { User } from '../user';
+import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { User } from '../models/user.model';
+import { Address } from '../models/address';
+import { BackendService } from '../service/backend.service';
 @Component({
   selector: 'app-response-page',
   templateUrl: './response-page.component.html',
@@ -10,24 +13,47 @@ import { User } from '../models/user.model';
 })
 export class ResponsePageComponent implements OnInit {
   faUser = faUser;
-  public data;
+  public data;public addr1;public addr2;public street;public city;
+  public zip;public region; public country;public ma = false;
   public displayName: string = '';
   public email : string;
   public address : string;
   public birthdate : string;
-  public isLoggedIn : boolean =false;
-  constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
+  public isLoggedIn : boolean =false;public fields;
+  update(user){
+    console.log("Hello");
+    console.log(user);
+    let address = new Address().deserialize(user);
+    console.log(address);
+    this.backend.updateInfo(address);
+  }
+  log(){
+    this.ma = true;
+  }
+  
+  
+  constructor(private obj: ActivatedRoute,private rou: Router,private bu: FormBuilder,private backend: BackendService) {
     this.data = (this.rou.getCurrentNavigation().extras.state);
     if(this.data == 401){
       this.isLoggedIn = true;
     }
     let details = new User();
+
     details=this.data;
+
+    this.displayName = details.DisplayName;
+    this.address = details.Address;
+    this.email = details.EmailID;
+    this.birthdate = details.BirthDate;
     console.log(this.data);
-    console.log(details.DisplayName);
   }
 
   ngOnInit(): void {
-    this.backend.updateInfo();
+    this.initRegForm();
+    
+ 
   }
+  initRegForm(){
+  }
+
 }

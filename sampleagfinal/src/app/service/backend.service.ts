@@ -5,6 +5,7 @@ import { OnInit } from '@angular/core';
 // import { Address } from 'cluster';
 import { Detailed } from '../address';
 import { User } from '../models/user.model';
+import { Address } from '../models/address';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,7 @@ async sendInfo(user: string, passkey: string){
       Password: passkey
     })
     this.values = resp.data;
+    console.log(this.values);
     if(this.values.ResponseCode == 200)
     {
       this.token = this.values.ResponseData.sessionToken;
@@ -44,14 +46,8 @@ async sendInfo(user: string, passkey: string){
         }
       };
       let resp = await axios.get("/api/user/individual/profile", this.config);
-      // console.log(resp);
       let details = new User().deserialize(resp.data.ResponseData);
       console.log(details);
-      // this.values= resp.data.ResponseData;
-      // details.DisplayName = this.values.DisplayName;
-      // details.Address = this.values.Address;
-      // details.EmailId = this.values.EmailID;
-      // details.BirthDate = this.values.BirthDate;
       return details;
     }
   }
@@ -63,15 +59,9 @@ async sendInfo(user: string, passkey: string){
   
 }
 
-async updateInfo(){
-  let add = new Detailed();
-  add.AddressLine1 = "Eleventh Cross";
-  add.AddressLine2 = "Maruthi Nagar";
-  add.City= "Bangalore";
-  add.Country = "IN";
-  add.Region = "Karnataka";
-  add.Street = "80 feet road";
-  add.Zip = 560034;
+async updateInfo(data){
+  let address = new Address();
+  address = data;
   let response = await axios.get("/api/user/individual/address/detailed",this.config);
   console.log(response);
   let details = await axios.post("/api/user/individual/address/detailed",{

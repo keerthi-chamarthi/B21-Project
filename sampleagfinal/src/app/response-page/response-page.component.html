@@ -16,7 +16,7 @@
                                 <img src="assets/userimg.jpg" alt="user-image" width="130" class="rounded mb-2 img-thumbnail" />
                             </div>
                             <div class="media-body mb-5 text-white profile-header-1">
-                                <h4 class="mt-0 mb-0">{{ details.DisplayName }}</h4>
+                                <h4 class="mt-0 mb-0">{{ displayName }}</h4>
                                 <p class="small mb-4">
                                     <i class="fa fa-map-marker mr-2"></i>countryname
                                 </p>
@@ -46,7 +46,30 @@
                                 <p class="mb-0">BirthDate : {{birthdate}}</p>
                             </div>
                         </div>
+                    </div><button (click)="log()" style="margin:0 30%;">
+                        update info
+                    </button>
+                    <div *ngIf="ma" class="container" style="margin: 0 30%;">
+                        <form #form="ngForm">
+                            <label>AddressLine1</label><br>
+                            <input type="text" ngModel name="AddressLine1"><br>
+                            <label>AddressLine2</label><br>
+                            <input type="text" ngModel name="AddressLine2"><br>
+                            <label>City</label><br>
+                            <input type="text" ngModel name="City"><br>
+                            <label>Country</label><br>
+                            <input type="text" ngModel name="Country"><br>
+                            <label>Region</label><br>
+                            <input type="text" ngModel name="Region"><br>
+                            <label>Street</label><br>
+                            <input type="text" ngModel name="Street"><br>
+                            <label>Zip</label><br>
+                            <input type="text" ngModel name="Zip">
+                            <button (click) ="update(form.value)">upload</button>
+                        </form>
+                        {{form.value | json}}
                     </div>
+                    
                 </ng-template>
                 </div>
             </div>
