@@ -24,11 +24,9 @@ export class ResponsePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initRegForm();
-    this.backend.updateInfo();
- 
   }
-  initRegForm(){
+  update(){
+    this.rou.navigateByUrl('/address');
   }
 
 }

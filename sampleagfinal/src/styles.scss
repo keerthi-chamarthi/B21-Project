@@ -1,88 +1,9 @@
-    /* You can add global styles to this file, and also import other style files */
-    
-    // @import "~bootstrap/dist/css/bootstrap.css";
-    // * {
-    //     font-family: 'Exo', sans-serif;
-    //     ;
-    // }
-    // html,
-    // body {
-    //     height: 100%;
-    //     padding: 0;
-    //     margin: 0;
-    //     background-color: lightgray;
-    // }
-    // .container-table {
-    //     display: table;
-    //     height: 100%;
-    // }
-    // .vertical-center-row {
-    //     display: table-cell;
-    //     vertical-align: middle;
-    // }
-    // .input-group {
-    //     width: 50vh;
-    // }
-    // .col-12 {
-    //     padding: 0;
-    // }
-    // .container {
-    //     padding: 0;
-    // }
-    // .profile-header {
-    //     transform: translateY(5rem);
-    // }
-    // .nouser {
-    //     text-align: center;
-    //     min-height: 600px;
-    //     justify-content: center;
-    //     align-items: center;
-    // }
-    // .card {
-    //     height: 600px;
-    // }
-    // .card-body {
-    //     justify-content: space-around;
-    //     align-items: center;
-    // }
-    // @media screen and (max-width: 500px) {
-    //     .card {
-    //         display: flex;
-    //         height: 100vh;
-    //     }
-    //     .container {
-    //         margin: 0;
-    //     }
-    //     .input-group {
-    //         width: 40vh;
-    //     }
-    //     .profile-header {
-    //         transform: translateY(1rem);
-    //     }
-    //     .profile-header-1 {
-    //         transform: translateY(3rem);
-    //     }
-    // }
-    // @media screen and (max-width: 768px) {
-    //     .input-group {
-    //         width: 100%;
-    //     }
-    //     .profile-header {
-    //         transform: translateY(1rem);
-    //     }
-    //     .profile-header-1 {
-    //         transform: translateY(3rem);
-    //     }
-    // }
-    // @media screen and (max-width: 1024px) {
-    //     .input-group {
-    //         width: 100%;
-    //     }
-
-    
     @import "~bootstrap/dist/css/bootstrap.css";
-    html,
-    body {
+    * {
+            font-family: 'Exo', sans-serif;
+            box-sizing: border-box;
+        }
+    html,body {
         height: 100%;
         padding: 0;
         margin: 0;
@@ -111,6 +32,9 @@
         padding: 0;
     }
     
+    .card{
+        height: 600px;
+    }
     .card-body {
         justify-content: space-around;
         align-items: center;
