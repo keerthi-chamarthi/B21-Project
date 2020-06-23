@@ -19,23 +19,13 @@ export class ResponsePageComponent implements OnInit {
   public email : string;
   public address : string;
   public birthdate : string;
-  public isLoggedIn : boolean =false;public fields;
-  update(user){
-    console.log("Hello");
-    console.log(user);
-    let address = new Address().deserialize(user);
-    console.log(address);
-    this.backend.updateInfo(address);
-  }
-  log(){
-    this.ma = true;
-  }
+  public isLoggedOut : boolean =false;public fields;
   
   
   constructor(private obj: ActivatedRoute,private rou: Router,private bu: FormBuilder,private backend: BackendService) {
     this.data = (this.rou.getCurrentNavigation().extras.state);
     if(this.data == 401){
-      this.isLoggedIn = true;
+      this.isLoggedOut = true;
     }
     let details = new User();
 
@@ -50,7 +40,7 @@ export class ResponsePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initRegForm();
-    
+    this.backend.updateInfo();
  
   }
   initRegForm(){

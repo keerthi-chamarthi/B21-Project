@@ -3,7 +3,7 @@
         <div class="col-12 col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <div *ngIf="isLoggedIn; else elseBlock" class="nouser h-100 row align-items-center">
+                    <div *ngIf="isLoggedOut; else elseBlock" class="nouser h-100 row align-items-center">
                             <div class="col">
                               <p><b>404 error</b></p>
                               <p>User doesn't exist</p>

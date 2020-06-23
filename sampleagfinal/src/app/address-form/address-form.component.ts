@@ -5,6 +5,7 @@ import {
   faChartArea,
   faRoad,
   faCity,
+  faMapPin
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,6 +22,7 @@ export class AddressFormComponent implements OnInit {
   faChatArea = faChartArea;
   faRoad = faRoad;
   faCity = faCity;
+  faMapPin = faMapPin;
   addressForm: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {}
 
@@ -33,7 +35,7 @@ export class AddressFormComponent implements OnInit {
       Country: ['', Validators.required],
       Region: ['', Validators.required],
       Street: ['', Validators.required],
-      // Zip: ['', Validators.required],
+      Zip: ['', Validators.required],
     });
   }
 

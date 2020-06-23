@@ -45,6 +45,11 @@ async sendInfo(user: string, passkey: string){
         "Authorization": "Bearer "+this.token,
         }
       };
+      // let response = await axios.get("/api/user/individual/address/detailed",this.config);
+      // console.log(response);
+      // if(response.data.ResponseData.length!=0){
+        
+      // }
       let resp = await axios.get("/api/user/individual/profile", this.config);
       let details = new User().deserialize(resp.data.ResponseData);
       console.log(details);
@@ -59,35 +64,38 @@ async sendInfo(user: string, passkey: string){
   
 }
 
-async updateInfo(data){
+async updateInfo(){
   let address = new Address();
-  address = data;
-  let response = await axios.get("/api/user/individual/address/detailed",this.config);
-  console.log(response);
-  let details = await axios.post("/api/user/individual/address/detailed",{
-    AddressLine1: "11 Cross",
-    AddressLine2: "Second Main, Maaruthi Nagar",
-    City: "Bangalore",
-    Country: "IN",
-    Region: "Karnataka",
-    Street: "80 feet road",
-    Zip: "560034",
-    ID: "8731789601955256205"
-    },this.config);
-  console.log(details);
+  // address = data;
+  // let response = await axios.get("/api/user/individual/address/detailed",this.config);
+  // console.log(response);
+//   let details = await axios.post("/api/user/individual/address/detailed",{
+//     AddressLine1: "11 Cross",
+// AddressLine2: "Second Main, Maaruthi Nagar",
+// City: "Bangalore",
+// Country: "IN",
+// DefaultAddress: true,
+// Name: "Address",
+// Region: "Karnataka",
+// Street: "80 feet road",
+// Zip: "560034"
+//     },this.config);
+//   console.log(details);
   
   let resp = await axios.get("/api/user/individual/address/detailed",this.config);
   console.log(resp);
 
   resp = await axios.put("/api/user/individual/address/detailed",{
-    AddressLine1 : "Eleventh Cross",
-    AddressLine2 : "Maruthi Nagar",
-    City:"Bangalore",
-    Country : "IN",
-    Region : "Karnataka",
-    Street : "80 feet road",
-    Zip : 560034,
-    ID: "8731789601955256205"
+    AddressLine1: "Eleventh Cross",
+AddressLine2: "Second Main, Maaruthi Nagar",
+City: "Bangalore",
+Country: "IN",
+DefaultAddress: true,
+ID: "8731789601939789709",
+Name: "Address",
+Region: "Karnataka",
+Street: "80 feet road",
+Zip: "560034"
     },this.config);
 
   resp = await axios.get("/api/user/individual/address/detailed",this.config);
