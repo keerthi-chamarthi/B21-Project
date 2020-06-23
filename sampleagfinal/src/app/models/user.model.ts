@@ -5,6 +5,7 @@ export class User {
     BirthDate : string;
     DisplayName : string;
     EmailID : string;
+    ID: number;
     deserialize(input: any) {
         Object.assign(this, input);
         return this;

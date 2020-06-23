@@ -10,7 +10,7 @@ import {
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackendService } from '../service/backend.service';
-import { Address } from '../models/address';
+import { Address } from '../models/address.model';
 @Component({
   selector: 'app-address-form',
   templateUrl: './address-form.component.html',
@@ -44,6 +44,6 @@ export class AddressFormComponent implements OnInit {
     console.log(user);
     let address = new Address().deserialize(user);
     console.log(address);
-    this.backend.updateInfo(address);
+    // this.backend.updateInfo();
   }
 }

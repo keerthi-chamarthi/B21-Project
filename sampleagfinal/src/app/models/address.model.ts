@@ -4,10 +4,11 @@ export class Address {
     AddressLine2: string;
     City: string;
     Country: string;
+    Name: string;
     Region: string;
     Street: string;
     Zip: number;
-    ID: "8731789601955256205";
+    ID: number;
     deserialize(input: any) {
         Object.assign(this, input);
         return this;
