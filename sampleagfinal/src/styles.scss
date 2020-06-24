@@ -33,6 +33,7 @@
     }
     
     .card{
+        min-height: 600px;
         height: 600px;
     }
     .card-body {
@@ -54,6 +55,8 @@
     @media screen and (max-width: 500px) {
         .card {
             display: flex;
+            min-height: 100vh;
+            height: 100%;
         }
         .container {
             margin: 0;

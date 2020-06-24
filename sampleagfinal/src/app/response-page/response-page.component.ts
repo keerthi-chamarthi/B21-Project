@@ -4,6 +4,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { User } from '../models/user.model';
 import { BackendService } from '../service/backend.service';
+import { Address } from '../models/address.model';
 @Component({
   selector: 'app-response-page',
   templateUrl: './response-page.component.html',
@@ -14,19 +15,24 @@ export class ResponsePageComponent implements OnInit {
   public data;
   public isLoggedOut : boolean =false;
   details : any;
+  addDetails : any;
   constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
-    this.data = (this.rou.getCurrentNavigation().extras.state);
-    if(this.data == 401){
+    // this.data = (this.rou.getCurrentNavigation().extras.state);
+    if(this.backend.details == 401){
       this.isLoggedOut = true;
     }
-    this.details = new User().deserialize(this.data);
+    this.details = new User().deserialize(this.backend.details);
     console.log(this.data);
+    this.addDetails = new Address().deserialize(this.backend.addrdetails);
   }
 
   ngOnInit(): void {
+    // this.backend.updateInfo();
   }
   update(){
     this.rou.navigateByUrl('/address');
   }
-
+  callBack(){
+    // this.backend.routeTo();
+  }
 }

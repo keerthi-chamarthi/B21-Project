@@ -24,7 +24,14 @@ export class AddressFormComponent implements OnInit {
   faCity = faCity;
   faMapPin = faMapPin;
   addressForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {}
+  data: any;
+  NoAddress : boolean = false;
+  constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {
+    this.data = (this.router.getCurrentNavigation().extras.state);
+    if(this.data=="Address not found"){
+      this.NoAddress = true;
+    }
+  }
 
   ngOnInit(): void { this.initRegForm()}
   initRegForm(){
@@ -38,12 +45,18 @@ export class AddressFormComponent implements OnInit {
       Zip: ['', Validators.required],
     });
   }
-
-  update(user){
+  fillAddress(){
+    this.NoAddress = false;
+  }
+  upload(user){
     console.log("Hello");
     console.log(user);
     let address = new Address().deserialize(user);
     console.log(address);
-    // this.backend.updateInfo();
+    this.backend.onUpdate(address);
+  }
+
+  callBack(){
+    this.backend.routeTo('/trade');
   }
 }

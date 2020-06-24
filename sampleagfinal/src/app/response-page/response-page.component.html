@@ -18,7 +18,7 @@
                             <div class="media-body mb-5 text-white profile-header-1">
                                 <h4 class="mt-0 mb-0">{{ details.DisplayName }}</h4>
                                 <p class="small mb-4">
-                                    <i class="fa fa-map-marker mr-2"></i>countryname
+                                    <i class="fa fa-map-marker mr-2"></i>{{ addDetails.Country }}
                                 </p>
                             </div>
                         </div>
@@ -27,27 +27,28 @@
                     <div class="bg-light p-4 d-flex justify-content-around text-center">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <h3 class="font-weight-bold mb-0 d-block">eur</h3>
-                                <small class="text-muted"> CurrencyCode</small>
+                                <h3 class="font-weight-bold mb-0 d-block">{{details.BusinessCurrencyCode}}</h3>
+                                <small class="text-muted">Currency Code </small>
                             </li>
                             <li class="list-inline-item">
-                                <h3 class="font-weight-bold mb-0 d-block">febtest</h3>
+                                <h3 class="font-weight-bold mb-0 d-block">{{details.BusinessAccountTitle}}</h3>
                                 <small class="text-muted"> AC Type</small>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="py-4 px-4">
+                    <div class="px-4">
                         <div class="py-4">
                             <h5 class="mb-3">User Profile</h5>
                             <div class="p-4 bg-light rounded shadow-sm">
                                 <p class="mb-0">EmailID : {{details.EmailID}}</p>
                                 <p class="mb-0">Address : {{details.Address}}</p>
+                                <p class="mb-0">Updated Address : {{addDetails.AddressLine1}}</p>
                                 <p class="mb-0">BirthDate : {{details.BirthDate}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="text-center pb-5">
+                    <div class="text-center">
                         <button type="submit" (click)="update()" class="btn btn-primary" >Update Address</button>
                     </div>
                 </ng-template>

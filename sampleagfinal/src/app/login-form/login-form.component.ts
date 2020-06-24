@@ -53,7 +53,7 @@ export class LoginFormComponent implements OnInit {
     let details = new User();
     details = this.result;
     console.log(details);
-   this.router.navigateByUrl('/trade', { state: this.result });
+  //  this.router.navigateByUrl('/trade', { state: this.result });
   }
 
 }
