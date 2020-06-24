@@ -6,20 +6,19 @@
                     <form #signupForm="ngForm" [formGroup]="registrationForm" class="mx-auto">
                         <div class="form-group">
                             <h3 class="text-center">SignUp Form</h3>
-                            <br />
-                            <label for="email">Email address</label>
+                            <label for="email" class="mt-3">Email address</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                    <fa-icon [icon]="faEnvelope"></fa-icon>
-                  </span>
+                                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                                    </span>
                                 </div>
                                 <input type="text" id="email" class="form-control" placeholder="example@mail.com" formControlName="email" />
                             </div>
                             <div *ngIf="
-                  registrationForm.get('email').touched &&
-                  registrationForm.get('email').errors?.required
-                " class="text-danger">
+                                        registrationForm.get('email').touched &&
+                                        registrationForm.get('email').errors?.required
+                                        " class="text-danger">
                                 Email is required
                             </div>
                             <div *ngIf="registrationForm.get('email').errors?.pattern" class="text-danger">
@@ -31,11 +30,11 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                    <fa-icon
-                      [icon]="fieldTextType ? faEye : faEyeSlash"
-                      (click)="toggleFieldTextType()"
-                    ></fa-icon>
-                  </span>
+                                        <fa-icon
+                                        [icon]="fieldTextType ? faEye : faEyeSlash"
+                                        (click)="toggleFieldTextType()"
+                                        ></fa-icon>
+                                    </span>
                                 </div>
                                 <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="password" />
                             </div>
@@ -59,8 +58,8 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                    <fa-icon [icon]="faUser"></fa-icon>
-                  </span>
+                                        <fa-icon [icon]="faUser"></fa-icon>
+                                    </span>
                                 </div>
                                 <input type="text" id="name" class="form-control" placeholder="Enter name here" formControlName="displayName" />
                             </div>

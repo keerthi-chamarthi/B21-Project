@@ -6,6 +6,8 @@ export class User {
     DisplayName : string;
     EmailID : string;
     ID: number;
+    BusinessAccountTitle: string;
+    BusinessCurrencyCode: string;
     deserialize(input: any) {
         Object.assign(this, input);
         return this;

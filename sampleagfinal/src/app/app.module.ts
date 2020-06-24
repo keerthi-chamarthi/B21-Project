@@ -8,8 +8,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { ResponsePageComponent } from './response-page/response-page.component';
 import {FormsModule} from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddressFormComponent } from './address-form/address-form.component';
 @NgModule({
-  declarations: [AppComponent, LoginFormComponent, ResponsePageComponent],
+  declarations: [AppComponent, LoginFormComponent, ResponsePageComponent, AddressFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
