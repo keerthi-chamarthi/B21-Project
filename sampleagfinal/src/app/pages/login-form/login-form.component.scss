@@ -1,10 +1,11 @@
-@import '../../styles.scss';
+@import '../../../styles.scss';
 .card {
     height: 600px;
 }
 
 .card-body {
     display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 500px) {
