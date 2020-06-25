@@ -38,8 +38,11 @@
                                 </div>
                                 <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="password" />
                             </div>
-                            <div *ngIf="registrationForm.get('password').touched" class="text-danger">
-                                Password is required registrationForm.get('password').errors?.required &&
+                            <div *ngIf="
+                  registrationForm.get('password').errors?.required &&
+                  registrationForm.get('password').touched
+                " class="text-danger">
+                                Password is required
                             </div>
                             <div *ngIf="registrationForm.get('password').errors?.pattern">
                                 <div *ngIf="registrationForm.get('password').errors?.minlength" class="text-danger">
@@ -51,11 +54,14 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" (click)="getData(signupForm.value)" class="btn btn-primary" [disabled]="!registrationForm.valid" [style.backgroundColor]="
+                            <button type="submit" (click)="validateCredentials(signupForm.value)" class="btn btn-primary" [disabled]="!registrationForm.valid" [style.backgroundColor]="
                   registrationForm.valid ? 'rgb(94,121,243)' : 'lightgrey'
                 ">
                 Log In
               </button>
+                            <div *ngIf="!isValid" class="my-2">
+                                <p class="text-danger">User not found</p>
+                            </div>
                         </div>
                     </form>
                 </div>

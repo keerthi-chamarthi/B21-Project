@@ -1,117 +1,165 @@
 import { Router } from '@angular/router';
-import { async } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { OnInit } from '@angular/core';
-// import { Address } from 'cluster';
-// import { Detailed } from '../address';
-import { User } from '../models/user.model';
-import { Address } from '../models/address.model';
+import {
+  LoginRequestModel,
+  PutAddressRequest,
+  PostAddressRequest,
+} from '../models/requests';
+import { User } from '../models/responses/user.model';
+import { Address } from '../models/responses/address.model';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class BackendService implements OnInit{
-  values: any = [
-
-  ];
+export class BackendService implements OnInit {
+  values: any = [];
   Object: any;
-  token : any;
-  config : any;
+  token: any;
+  config: any;
+  detailedAddress: Address;
+  userProfileDetails: any;
+  AddressFound: boolean;
+  navigateStatus: boolean;
+  message: any;
+  constructor(private router: Router) {}
+  ngOnInit(): void {}
 
-  // "AddressLine1": "Eleventh Cross",
-  //   "AddressLine2": "Maruthi Nagar",
-  //   "City": "Bangalore",
-  //   "Country": "IN",
-  //   "Region": "Karnataka",
-  //   "Street": "80 feet road",
-  //   "Zip": "560034"
-
-  constructor(private router : Router) { }
-  ngOnInit(): void {
-    // throw new Error("Method not implemented.");
-  }
-async sendInfo(user: string, passkey: string){
+  async login(user: string, passkey: string) {
     const instance = axios.create({});
-  try{
-      let resp = await instance.post("/api/auth/user/login", {
-      Username: user,
-      Password: passkey
-    })
-    this.values = resp.data;
-    if(this.values.ResponseCode == 200)
-    {
-      this.token = this.values.ResponseData.sessionToken;
-      this.config = {"headers": {
-        "Authorization": "Bearer "+this.token,
+    const requestObj: LoginRequestModel = { Username: user, Password: passkey };
+    try {
+      let postResponse = await instance.post(
+        '/api/auth/user/login',
+        requestObj
+      );
+      this.values = postResponse.data;
+      console.log(this.values);
+      if (this.values.ResponseCode == 200) {
+        this.token = this.values.ResponseData.sessionToken;
+        this.config = {
+          headers: {
+            Authorization: 'Bearer ' + this.token,
+          },
+        };
+        localStorage.setItem('token', this.token);
+        await this.getDetailedAddress();
+        if (this.AddressFound) {
+          this.navigateStatus = true;
+          console.log('Address defined ', this.detailedAddress.AddressLine1);
+          await this.getProfileDetails();
+          this.routeTo('/user');
+        } else {
+          this.message = "Address not found";
+          this.routeTo('/address');
         }
-      };
-      let resp = await axios.get("/api/user/individual/profile", this.config);
-      // console.log(resp);
-      let details = new User().deserialize(resp.data.ResponseData);
-      if(details.Address != "") {
-        console.log("Address defined");
+        return this.userProfileDetails;
       }
-      else {
-        // this.router.navigate('/')
-        this.router.navigateByUrl('/trade');
-      }
-      console.log(details);
-      // this.values= resp.data.ResponseData;
-      // details.DisplayName = this.values.DisplayName;
-      // details.Address = this.values.Address;
-      // details.EmailId = this.values.EmailID;
-      // details.BirthDate = this.values.BirthDate;
-      return details;
+    } catch (err) {
+      console.log(err);
+      this.userProfileDetails = 401;
+      return 401;
     }
   }
-  catch(err)
-  {
-    console.log(err);
-    return 401;
+
+  async updateDetailedAddress(input) {
+    console.log('input data ', input);
+    await this.getDetailedAddress();
+    if (this.AddressFound) {
+      await this.putDetailedAddress(input);
+    } else {
+      await this.postDetailedAddress(input);
+    }
+    await this.getProfileDetails();
+    await this.getDetailedAddress();
+    this.routeTo('/user');
   }
-  
-}
 
-async updateInfo(){
-  let add = new Address();
-  add.AddressLine1 = "11 Cross";
-  add.AddressLine2 = "Second Main, Maaruthi Nagar";
-  add.City = "Bangalore";
-  add.Country = "IN";
-  add.Region = "Karnataka";
-  add.Street = "80 feet road";
-  add.Zip = 560034;
-  add.ID = 8731789601955256205;
+  async deleteAddress() {
+    await this.getDetailedAddress();
+    let deleteResponse = await axios.delete(
+      '/api/user/individual/address/detailed/' + this.detailedAddress.ID,
+      this.config
+    );
+    console.log('results: ');
+    console.log(deleteResponse.data.ResponseData[0]);
+  }
 
-  let response = await axios.get("/api/user/individual/address/detailed",this.config);
-  console.log(response);
-  let details = await axios.post("/api/user/individual/address/detailed",{
-    AddressLine1: "11 Cross",
-    AddressLine2: "Second Main, Maaruthi Nagar",
-    City: "Bangalore",
-    Country: "IN",
-    Region: "Karnataka",
-    Street: "80 feet road",
-    Zip: "560034",
-    ID: "8731789601955256205"
-    },this.config);
-  console.log(details);
-  
-  let resp = await axios.get("/api/user/individual/address/detailed",this.config);
-  console.log(resp);
+  async getProfileDetails() {
+    let resp = await axios.get('/api/user/individual/profile', this.config);
+    this.userProfileDetails = new User().deserialize(resp.data.ResponseData);
+    localStorage.setItem('userData', JSON.stringify(this.userProfileDetails));
+    console.log(resp.data.ResponseData);
+  }
 
-  resp = await axios.put("/api/user/individual/address/detailed",{
-    AddressLine1 : "Eleventh Cross",
-    AddressLine2 : "Maruthi Nagar",
-    City:"Bangalore",
-    Country : "IN",
-    Region : "Karnataka",
-    Street : "80 feet road",
-    Zip : 560034,
-    ID: "8731789601955256205"
-    },this.config);
+  async getDetailedAddress() {
+    let getResponse = await axios.get(
+      '/api/user/individual/address/detailed',
+      this.config
+    );
+    if (getResponse.data.ResponseData.length != 0) {
+      this.AddressFound = true;
+    } else {
+      this.AddressFound = false;
+    }
+    console.log('AddressFound');
+    this.detailedAddress = new Address().deserialize(
+      getResponse.data.ResponseData[0]
+    );
+    console.log(this.detailedAddress);
+    localStorage.setItem(
+      'detailedAddress',
+      JSON.stringify(this.detailedAddress)
+    );
+  }
 
-  resp = await axios.get("/api/user/individual/address/detailed",this.config);
-  console.log(resp);
-}
+  async putDetailedAddress(input) {
+    const putRequestObject: PutAddressRequest = {
+      AddressLine1: input.AddressLine1,
+      AddressLine2: input.AddressLine2,
+      City: input.City,
+      Country: input.Country,
+      DefaultAddress: true,
+      ID: this.detailedAddress.ID,
+      Name: 'Address',
+      Region: input.Region,
+      Street: input.Street,
+      Zip: input.Zip,
+    };
+
+    let putResponse = await axios.put(
+      '/api/user/individual/address/detailed',
+      putRequestObject,
+      this.config
+    );
+    console.log(putResponse);
+  }
+
+  async postDetailedAddress(input) {
+    const postRequestObject: PostAddressRequest = {
+      AddressLine1: input.AddressLine1,
+      AddressLine2: input.AddressLine2,
+      City: input.City,
+      Country: input.Country,
+      DefaultAddress: true,
+      // ID: "8731789601939789709",
+      Name: 'Address',
+      Region: input.Region,
+      Street: input.Street,
+      Zip: input.Zip,
+    };
+    let postResponse = await axios.post(
+      '/api/user/individual/address/detailed/',
+      postRequestObject,
+      this.config
+    );
+    console.log(postResponse);
+  }
+
+  routeTo(link: string) {
+    if (link == '/user')
+      this.router.navigateByUrl('/user', { state: this.userProfileDetails });
+    else this.router.navigateByUrl(link, { state: this.message });
+  }
 }
