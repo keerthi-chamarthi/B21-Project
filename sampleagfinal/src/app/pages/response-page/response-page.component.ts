@@ -14,7 +14,10 @@ export class ResponsePageComponent implements OnInit {
   public data;
   details : any;
   addDetails : any;
+<<<<<<< HEAD
   // ImageURL: string;
+=======
+>>>>>>> master
   constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
     this.details = JSON.parse( localStorage.getItem("userData") );
     console.log(this.data);
@@ -24,7 +27,10 @@ export class ResponsePageComponent implements OnInit {
 
   ngOnInit(): void {
     // this.backend.updateInfo();
+<<<<<<< HEAD
     // this.ImageURL = "data:image/png;base64, " + this.backend.userProfileDetails.ImageURL;
+=======
+>>>>>>> master
   }
   update(){
     this.rou.navigateByUrl('/address');

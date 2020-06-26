@@ -26,11 +26,18 @@ export class AddressFormComponent implements OnInit {
   faMapPin = faMapPin;
   addressForm: FormGroup;
   data: any;
+<<<<<<< HEAD
   
   NoAddressFound : boolean = false;
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {
     this.data = (this.router.getCurrentNavigation().extras.state);
     if(this.data == "Address not found") {
+=======
+  NoAddressFound : boolean = false;
+  constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {
+    this.data = (this.router.getCurrentNavigation().extras.state);
+    if(!this.data){
+>>>>>>> master
       this.NoAddressFound = true;
     }
   }

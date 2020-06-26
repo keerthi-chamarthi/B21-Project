@@ -8,7 +8,10 @@ export class User {
   UserID: number;
   BusinessAccountTitle: string;
   BusinessCurrencyCode: string;
+<<<<<<< HEAD
   // ImageURL: string;
+=======
+>>>>>>> master
   deserialize(input: any) {
     // Object.assign(this, input);
     this.Address = input.Address;
@@ -18,7 +21,10 @@ export class User {
     this.UserID = input.UserID;
     this.BusinessAccountTitle = input.BusinessAccountTitle;
     this.BusinessCurrencyCode = input.BusinessCurrencyCode;
+<<<<<<< HEAD
     // this.ImageURL= input.ImageURL;
+=======
+>>>>>>> master
     return this;
   }
 }

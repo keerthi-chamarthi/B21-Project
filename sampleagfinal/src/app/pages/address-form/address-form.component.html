@@ -7,8 +7,13 @@
                         <div class="col text-center d-flex align-items-center flex-column nouser">
                             <p>You didn't fill the address</p>
                             <div class="text-center pb-5 d-flex justify-content-center">
+<<<<<<< HEAD
                                 <button type="submit" (click)="fillAddress()" class="btn btn-primary mx-3">Upload Address</button>
                                 <button type="submit" (click)="callBack()" class="btn btn-dark">Skip</button>
+=======
+                                <button type="submit" (click)="fillAddress()" class="btn btn-primary mx-3" >Upload Address</button>
+                                <button type="submit" (click)="callBack()" class="btn btn-dark" >Skip</button>
+>>>>>>> master
                             </div>
                         </div>
                     </div>
@@ -43,7 +48,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                         <fa-icon [icon]="faCity"></fa-icon>
+<<<<<<< HEAD
                                         <!-- <i class="fa fa-city"></i> -->
+=======
+>>>>>>> master
                                     </span>
                                     </div>
                                     <input type="text" id="City" class="form-control" placeholder="Enter your City here" formControlName="City" />
@@ -94,8 +102,12 @@
                                 </div>
                             </div>
                             <div class="text-center pb-5">
+<<<<<<< HEAD
                                 <button type="submit" (click)="upload(addressForm.value)" class="btn btn-primary mx-3" [disabled]="!addressForm.valid" [style.backgroundColor]="addressForm.valid ? 'rgb(94,121,243)' : 'lightgrey'" name="Zip">Upload</button>
                                 <button type="submit" (click)="callBack()" class="btn btn-dark">Back to Profile </button>
+=======
+                                <button type="submit" (click)="upload(addressForm.value)" class="btn btn-primary" [disabled]="!addressForm.valid" [style.backgroundColor]="addressForm.valid ? 'rgb(94,121,243)' : 'lightgrey'" name="Zip">Upload</button>
+>>>>>>> master
                             </div>
                         </form>
                     </ng-template>
