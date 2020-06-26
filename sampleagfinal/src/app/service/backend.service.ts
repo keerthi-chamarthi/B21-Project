@@ -2,7 +2,11 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { OnInit } from '@angular/core';
-import { LoginRequestModel, UpdateAddressRequest } from '../models/requests';
+import {
+  LoginRequestModel,
+  PutAddressRequest,
+  PostAddressRequest,
+} from '../models/requests';
 import { User } from '../models/responses/user.model';
 import { Address } from '../models/responses/address.model';
 
@@ -17,9 +21,8 @@ export class BackendService implements OnInit {
   detailedAddress: Address;
   userProfileDetails: any;
   AddressFound: boolean;
-  message : any;
   navigateStatus: boolean;
-
+  message: any;
   constructor(private router: Router) {}
   ngOnInit(): void {}
 
@@ -27,7 +30,10 @@ export class BackendService implements OnInit {
     const instance = axios.create({});
     const requestObj: LoginRequestModel = { Username: user, Password: passkey };
     try {
-      let postResponse = await instance.post('/api/auth/user/login', requestObj);
+      let postResponse = await instance.post(
+        '/api/auth/user/login',
+        requestObj
+      );
       this.values = postResponse.data;
       console.log(this.values);
       if (this.values.ResponseCode == 200) {
@@ -44,8 +50,7 @@ export class BackendService implements OnInit {
           console.log('Address defined ', this.detailedAddress.AddressLine1);
           await this.getProfileDetails();
           this.routeTo('/user');
-        } 
-        else {
+        } else {
           this.message = "Address not found";
           this.routeTo('/address');
         }
@@ -63,8 +68,7 @@ export class BackendService implements OnInit {
     await this.getDetailedAddress();
     if (this.AddressFound) {
       await this.putDetailedAddress(input);
-    } 
-    else {
+    } else {
       await this.postDetailedAddress(input);
     }
     await this.getProfileDetails();
@@ -72,39 +76,46 @@ export class BackendService implements OnInit {
     this.routeTo('/user');
   }
 
-  async deleteAddress(){
+  async deleteAddress() {
     await this.getDetailedAddress();
     let deleteResponse = await axios.delete(
-      '/api/user/individual/address/detailed/' +
-      this.detailedAddress.ID,
+      '/api/user/individual/address/detailed/' + this.detailedAddress.ID,
       this.config
     );
     console.log('results: ');
     console.log(deleteResponse.data.ResponseData[0]);
   }
 
-  async getProfileDetails(){
+  async getProfileDetails() {
     let resp = await axios.get('/api/user/individual/profile', this.config);
     this.userProfileDetails = new User().deserialize(resp.data.ResponseData);
     localStorage.setItem('userData', JSON.stringify(this.userProfileDetails));
+    console.log(resp.data.ResponseData);
   }
 
-  async getDetailedAddress(){
-    let getResponse = await axios.get('/api/user/individual/address/detailed',this.config);
-    if(getResponse.data.ResponseData.length != 0){
+  async getDetailedAddress() {
+    let getResponse = await axios.get(
+      '/api/user/individual/address/detailed',
+      this.config
+    );
+    if (getResponse.data.ResponseData.length != 0) {
       this.AddressFound = true;
-    }
-    else{
+    } else {
       this.AddressFound = false;
     }
-    console.log("AddressFound");
-    this.detailedAddress = new Address().deserialize(getResponse.data.ResponseData[0]);
+    console.log('AddressFound');
+    this.detailedAddress = new Address().deserialize(
+      getResponse.data.ResponseData[0]
+    );
     console.log(this.detailedAddress);
-    localStorage.setItem('detailedAddress',JSON.stringify(this.detailedAddress));
+    localStorage.setItem(
+      'detailedAddress',
+      JSON.stringify(this.detailedAddress)
+    );
   }
 
-  async putDetailedAddress(input){
-    const putRequestObject : UpdateAddressRequest = {
+  async putDetailedAddress(input) {
+    const putRequestObject: PutAddressRequest = {
       AddressLine1: input.AddressLine1,
       AddressLine2: input.AddressLine2,
       City: input.City,
@@ -114,27 +125,33 @@ export class BackendService implements OnInit {
       Name: 'Address',
       Region: input.Region,
       Street: input.Street,
-      Zip: input.Zip,}
+      Zip: input.Zip,
+    };
 
-    let putResponse = await axios.put('/api/user/individual/address/detailed',putRequestObject,this.config);
-      console.log(putResponse);
+    let putResponse = await axios.put(
+      '/api/user/individual/address/detailed',
+      putRequestObject,
+      this.config
+    );
+    console.log(putResponse);
   }
 
-  async postDetailedAddress(input){
+  async postDetailedAddress(input) {
+    const postRequestObject: PostAddressRequest = {
+      AddressLine1: input.AddressLine1,
+      AddressLine2: input.AddressLine2,
+      City: input.City,
+      Country: input.Country,
+      DefaultAddress: true,
+      // ID: "8731789601939789709",
+      Name: 'Address',
+      Region: input.Region,
+      Street: input.Street,
+      Zip: input.Zip,
+    };
     let postResponse = await axios.post(
       '/api/user/individual/address/detailed/',
-      {
-        AddressLine1: input.AddressLine1,
-        AddressLine2: input.AddressLine2,
-        City: input.City,
-        Country: input.Country,
-        DefaultAddress: true,
-        // ID: "8731789601939789709",
-        Name: 'Address',
-        Region: input.Region,
-        Street: input.Street,
-        Zip: input.Zip,
-      },
+      postRequestObject,
       this.config
     );
     console.log(postResponse);
@@ -143,7 +160,6 @@ export class BackendService implements OnInit {
   routeTo(link: string) {
     if (link == '/user')
       this.router.navigateByUrl('/user', { state: this.userProfileDetails });
-    else 
-      this.router.navigateByUrl(link, { state: this.message });
+    else this.router.navigateByUrl(link, { state: this.message });
   }
 }

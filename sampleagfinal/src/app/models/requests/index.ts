@@ -1,2 +1,3 @@
 export * from './login.request.model';
-export * from './updateaddress.request.model';
+export * from './putaddress.request.model';
+export * from './postaddress.request.model';
