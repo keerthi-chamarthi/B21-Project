@@ -1,18 +1,46 @@
 <div class="container container-table">
     <div class="row vertical-center-row">
+<<<<<<< HEAD
         <div class="col-12 col-md-6 offset-md-3 p-0">
             <div class="card p-0">
                 <div class="card-body p-0">
+=======
+<<<<<<<< HEAD:sampleagfinal/src/app/pages/response-page/response-page.component.html
+        <div class="col-12 col-md-6 offset-md-3 p-0">
+            <div class="card p-0">
+                <div class="card-body p-0">
+========
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="isLoggedOut; else elseBlock" class="nouser h-100 row align-items-center">
+                            <div class="col">
+                              <p><b>404 error</b></p>
+                              <p>User doesn't exist</p>
+                            </div>
+                    </div>
+                    <ng-template #elseBlock>
+>>>>>>>> master:sampleagfinal/src/app/response-page/response-page.component.html
+>>>>>>> master
                     <div class="px-4 pt-0 pb-4 bg-dark">
                         <div class="media align-items-end profile-header">
                             <div class="profile mr-3">
                                 <img src="assets/userimg.jpg" alt="user-image" width="130" class="rounded mb-2 img-thumbnail" />
+<<<<<<< HEAD
+                                <!-- <img src={{ImageURL}} alt="Red dot" /> -->
+=======
+>>>>>>> master
                             </div>
                             <div class="media-body mb-5 text-white profile-header-1">
                                 <!-- <h4 class="mt-0 mb-0">{{ details.DisplayName }}</h4> -->
                                 <h4 class="mt-0 mb-0">{{ details.DisplayName }}</h4>
                                 <p class="small mb-4">
+<<<<<<< HEAD
+                                    <!-- <i class="fa fa-map-marker mr-2"></i>{{ addDetails.Country }} -->
+                                    {{ addDetails.Country }}
+=======
                                     <i class="fa fa-map-marker mr-2"></i>{{ addDetails.Country }}
+>>>>>>> master
                                 </p>
                             </div>
                         </div>
@@ -42,6 +70,19 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+                    <div class="text-center mb-5">
+                        <div class="justify-content-center my-2 row p-0 mx-0">
+                            <div class="col-12">
+                                <button type="submit" (click)="update()" class="btn btn-primary mx-3">Update Address</button>
+                                <button type="submit" (click)="deleteAddress()" class="btn btn-primary mx-3">Delete Address</button>
+                            </div>
+                        </div>
+                        <button type="submit" (click)="logout()" class="btn btn-primary">Logout</button>
+
+                    </div>
+=======
+<<<<<<<< HEAD:sampleagfinal/src/app/pages/response-page/response-page.component.html
                     <div class="text-center mb-5">
                         <div class="justify-content-center my-2 row p-0 mx-0">
                             <div class="col-12">
@@ -52,6 +93,13 @@
                         <button type="submit" (click)="logout()" class="btn btn-primary" >Logout</button>
                         
                     </div>
+========
+                    <div class="text-center">
+                        <button type="submit" (click)="update()" class="btn btn-primary" >Update Address</button>
+                    </div>
+                </ng-template>
+>>>>>>>> master:sampleagfinal/src/app/response-page/response-page.component.html
+>>>>>>> master
                 </div>
             </div>
         </div>

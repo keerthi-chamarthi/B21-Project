@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap,Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
-import { BackendService } from 'src/app/service/backend.service';
+import { User } from '../models/user.model';
+import { BackendService } from '../service/backend.service';
+import { Address } from '../models/address.model';
 @Component({
   selector: 'app-response-page',
   templateUrl: './response-page.component.html',
@@ -10,40 +12,31 @@ import { BackendService } from 'src/app/service/backend.service';
 })
 export class ResponsePageComponent implements OnInit {
   faUser = faUser;
-  names = localStorage.getItem("username");
   public data;
+  public isLoggedOut : boolean =false;
   details : any;
   addDetails : any;
-<<<<<<< HEAD
-  // ImageURL: string;
-=======
->>>>>>> master
   constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
-    this.details = JSON.parse( localStorage.getItem("userData") );
-    console.log(this.data);
-    //this.addDetails = new Address().deserialize(this.backend.addrdetails);
-    this.addDetails = JSON.parse(localStorage.getItem("detailedAddress"));
+    // this.data = (this.rou.getCurrentNavigation().extras.state);
+    
   }
 
   ngOnInit(): void {
     // this.backend.updateInfo();
-<<<<<<< HEAD
-    // this.ImageURL = "data:image/png;base64, " + this.backend.userProfileDetails.ImageURL;
-=======
->>>>>>> master
+    if(this.backend.details == 401){
+      this.isLoggedOut = true;
+    }
+    
+    // this.details = new User().deserialize(this.backend.details);
+    this.details = JSON.parse(localStorage.getItem('details'));
+    console.log(this.data);
+    // this.addDetails = new Address().deserialize(this.backend.addrdetails);
+    this.addDetails = JSON.parse(localStorage.getItem('addrdetails'));
   }
   update(){
     this.rou.navigateByUrl('/address');
   }
   callBack(){
     // this.backend.routeTo();
-  }
-  logout(){
-    localStorage.clear();
-    this.rou.navigateByUrl('/');
-  }
-
-  deleteAddress(){
-    this.backend.deleteAddress();
   }
 }
