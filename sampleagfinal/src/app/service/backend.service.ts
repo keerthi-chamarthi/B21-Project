@@ -16,7 +16,8 @@ export class BackendService implements OnInit {
   config: any;
   detailedAddress: Address;
   userProfileDetails: any;
-  AddressFound: any;
+  AddressFound: boolean;
+  message : any;
   navigateStatus: boolean;
 
   constructor(private router: Router) {}
@@ -45,6 +46,7 @@ export class BackendService implements OnInit {
           this.routeTo('/user');
         } 
         else {
+          this.message = "Address not found";
           this.routeTo('/address');
         }
         return this.userProfileDetails;
@@ -141,6 +143,7 @@ export class BackendService implements OnInit {
   routeTo(link: string) {
     if (link == '/user')
       this.router.navigateByUrl('/user', { state: this.userProfileDetails });
-    else this.router.navigateByUrl(link, { state: this.AddressFound });
+    else 
+      this.router.navigateByUrl(link, { state: this.message });
   }
 }

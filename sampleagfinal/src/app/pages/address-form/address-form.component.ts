@@ -29,7 +29,7 @@ export class AddressFormComponent implements OnInit {
   NoAddressFound : boolean = false;
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {
     this.data = (this.router.getCurrentNavigation().extras.state);
-    if(!this.data){
+    if(this.data=="Address not found"){
       this.NoAddressFound = true;
     }
   }
