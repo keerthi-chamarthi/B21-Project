@@ -14,23 +14,35 @@ export class ResponsePageComponent implements OnInit {
   public data;
   details : any;
   addDetails : any;
-<<<<<<< HEAD
-  // ImageURL: string;
-=======
->>>>>>> master
+  ImageURL: string;
+  image : boolean = false;
   constructor(private obj: ActivatedRoute,private rou: Router, private backend : BackendService) {
     this.details = JSON.parse( localStorage.getItem("userData") );
-    console.log(this.data);
+    console.log(this.details);
     //this.addDetails = new Address().deserialize(this.backend.addrdetails);
     this.addDetails = JSON.parse(localStorage.getItem("detailedAddress"));
+    console.log(this.addDetails);
+    this.details.ImageURL = undefined;
+    if(this.details.ImageURL == undefined ){
+      this.image = true;
+      if(this.details.Gender == "Male"){
+        this.details.ImageURL = "assets/images/male.jpg";
+      }
+      else{
+        this.details.ImageURL = "assets/images/female.jpg";
+      }
+    }
+    this.ImageURL = this.details.ImageURL;
   }
 
   ngOnInit(): void {
     // this.backend.updateInfo();
-<<<<<<< HEAD
     // this.ImageURL = "data:image/png;base64, " + this.backend.userProfileDetails.ImageURL;
-=======
->>>>>>> master
+    // this.details = JSON.parse( localStorage.getItem("userData") );
+    // console.log(this.data);
+    // //this.addDetails = new Address().deserialize(this.backend.addrdetails);
+    // this.addDetails = JSON.parse(localStorage.getItem("detailedAddress"));
+    // console.log(this.addDetails);
   }
   update(){
     this.rou.navigateByUrl('/address');
