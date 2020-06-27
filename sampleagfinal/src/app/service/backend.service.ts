@@ -64,6 +64,12 @@ export class BackendService implements OnInit {
   }
 
   async updateDetailedAddress(input) {
+    this.token = localStorage.getItem("token");
+    this.config = {
+          headers: {
+            Authorization: 'Bearer ' + this.token,
+          },
+    };
     console.log('input data ', input);
     await this.getDetailedAddress();
     if (this.AddressFound) {
@@ -77,11 +83,21 @@ export class BackendService implements OnInit {
   }
 
   async deleteAddress() {
+    this.token = localStorage.getItem("token");
+    this.config = {
+          headers: {
+            Authorization: 'Bearer ' + this.token,
+          },
+    };
     await this.getDetailedAddress();
+    console.log(this.config);
     let deleteResponse = await axios.delete(
       '/api/user/individual/address/detailed/' + this.detailedAddress.ID,
       this.config
     );
+    localStorage.removeItem("detailedAddress");
+    await this.getProfileDetails();
+    this.routeTo('user');
     console.log('results: ');
     console.log(deleteResponse.data.ResponseData[0]);
   }
@@ -94,6 +110,7 @@ export class BackendService implements OnInit {
   }
 
   async getDetailedAddress() {
+    console.log(this.config);
     let getResponse = await axios.get(
       '/api/user/individual/address/detailed',
       this.config
@@ -143,7 +160,6 @@ export class BackendService implements OnInit {
       City: input.City,
       Country: input.Country,
       DefaultAddress: true,
-      // ID: "8731789601939789709",
       Name: 'Address',
       Region: input.Region,
       Street: input.Street,
@@ -159,7 +175,7 @@ export class BackendService implements OnInit {
 
   routeTo(link: string) {
     if (link == '/user')
-      this.router.navigateByUrl('/user', { state: this.userProfileDetails });
+      this.router.navigateByUrl('/user');
     else this.router.navigateByUrl(link, { state: this.message });
   }
 }

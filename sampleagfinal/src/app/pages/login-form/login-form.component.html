@@ -13,9 +13,10 @@
               <label for="email" class="mt-3">Email address</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text ">
+                  <span class="input-group-text">
                     <!-- <fa-icon [icon]="faEnvelope"></fa-icon> -->
-                    <i class="fa fa-sign-in"></i>
+                    <!-- <fa name="cog" animation="spin"></fa> -->
+                    <i class = "fa fa-envelope"></i>
                   </span>
                 </div>
                 <input
@@ -47,10 +48,10 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <fa-icon
+                    <!-- <fa-icon
                       [icon]="fieldTextType ? faEye : faEyeSlash"
                       (click)="toggleFieldTextType()"
-                    ></fa-icon>
+                    ></fa-icon> -->
                   </span>
                 </div>
                 <input
@@ -97,7 +98,7 @@
                 Log In
               </button>
               <div *ngIf="!isValid" class="my-2">
-                <p><b>User not found</b></p>
+                <p class = "text-danger">User not found! Please try again</p>
             </div>
             </div>
           </form>

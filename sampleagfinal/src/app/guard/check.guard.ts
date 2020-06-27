@@ -15,7 +15,8 @@ export class CheckGuard implements CanActivate {
       if(localStorage.getItem("token")==null)
       return true;  
       else{
-        window.history.go(-1);
+        //window.history.go(-1);
+        this.route.navigateByUrl('/user');
         return false;
       }
 

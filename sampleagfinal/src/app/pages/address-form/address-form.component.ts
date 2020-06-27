@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  faMapMarker,
-  faGlobe,
-  faChartArea,
-  faRoad,
-  faCity,
-  faMapPin
-} from '@fortawesome/free-solid-svg-icons';
+// import {
+//   faMapMarker,
+//   faGlobe,
+//   faChartArea,
+//   faRoad,
+//   faCity,
+//   faMapPin
+// } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/service/backend.service';
@@ -18,18 +18,19 @@ import { Address } from 'src/app/models/responses/address.model';
   styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent implements OnInit {
-  faMapMarker = faMapMarker;
-  faGlobe = faGlobe;
-  faChatArea = faChartArea;
-  faRoad = faRoad;
-  faCity = faCity;
-  faMapPin = faMapPin;
+  // faMapMarker = faMapMarker;
+  // faGlobe = faGlobe;
+  // faChatArea = faChartArea;
+  // faRoad = faRoad;
+  // faCity = faCity;
+  // faMapPin = faMapPin;
   addressForm: FormGroup;
   data: any;
+  
   NoAddressFound : boolean = false;
   constructor(private fb: FormBuilder, private router: Router, private backend: BackendService) {
     this.data = (this.router.getCurrentNavigation().extras.state);
-    if(this.data=="Address not found"){
+    if(this.data == "Address not found") {
       this.NoAddressFound = true;
     }
   }
@@ -58,6 +59,6 @@ export class AddressFormComponent implements OnInit {
   }
 
   callBack(){
-    this.backend.routeTo('/user');
+    this.backend.getProfileDetails();
   }
 }

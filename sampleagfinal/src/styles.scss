@@ -1,8 +1,12 @@
     @import "~bootstrap/dist/css/bootstrap.css";
+    // @import '~font-awesome/scss/font-awesome.scss';
+    // $fa-font-path: "../node_modules/font-awesome/fonts";
+    // @import '~font-awesome/scss/font-awesome.scss';
     * {
             font-family: 'Exo', sans-serif;
             box-sizing: border-box;
         }
+
     html,body {
         height: 100%;
         padding: 0;

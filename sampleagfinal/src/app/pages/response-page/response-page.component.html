@@ -13,12 +13,14 @@
                     <div class="px-4 pt-0 pb-4 bg-dark">
                         <div class="media align-items-end profile-header">
                             <div class="profile mr-3">
-                                <img src="assets/userimg.jpg" alt="user-image" width="130" class="rounded mb-2 img-thumbnail" />
+                                <!-- <img src="assets/userimg.jpg" alt="user-image" width="130" class="rounded mb-2 img-thumbnail" /> -->
+                                <img [src]= " image? ImageURL : 'data:image/jpg;base64,'+ImageURL | safeHtml" alt="user-image" width="130" class="rounded mb-2 img-thumbnail"  />
                             </div>
                             <div class="media-body mb-5 text-white profile-header-1">
                                 <h4 class="mt-0 mb-0">{{ details.DisplayName }}</h4>
                                 <p class="small mb-4">
-                                    <i class="fa fa-map-marker mr-2"></i>{{ addDetails.Country }}
+                                    <!-- <i class="fa fa-map-marker mr-2"></i>{{ addDetails.Country }} -->
+                                    {{ addDetails.Country }}
                                 </p>
                             </div>
                         </div>
@@ -40,6 +42,7 @@
                     <div class="px-4">
                         <div class="py-4">
                             <h5 class="mb-3">User Profile</h5>
+                            
                             <div class="p-4 bg-light rounded shadow-sm">
                                 <p class="mb-0">EmailID : {{details.EmailID}}</p>
                                 <p class="mb-0">Address : {{details.Address}}</p>
