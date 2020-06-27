@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap,Router } from '@angular/router';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { BackendService } from 'src/app/service/backend.service';
 @Component({
@@ -9,7 +9,7 @@ import { BackendService } from 'src/app/service/backend.service';
   styleUrls: ['./response-page.component.scss'],
 })
 export class ResponsePageComponent implements OnInit {
-  faUser = faUser;
+  // s = faUser;
   names = localStorage.getItem("username");
   public data;
   details : any;

@@ -1,10 +1,10 @@
 import { BackendService } from 'src/app/service/backend.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+// import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+// import { faEye } from '@fortawesome/free-solid-svg-icons';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { User } from '../../models/responses/user.model';
 // import { User } from '../models/user.model';
@@ -14,10 +14,10 @@ import { User } from '../../models/responses/user.model';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  faEyeSlash = faEyeSlash;
-  faEnvelope = faEnvelope;
-  faEye = faEye;
-  faUser = faUser;
+  // faEyeSlash = faEyeSlash;
+  // faEnvelope = faEnvelope;
+  // faEye = faEye;
+  // faUser = faUser;
 
   registrationForm: FormGroup;
   fieldTextType: boolean;
