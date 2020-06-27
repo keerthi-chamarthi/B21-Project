@@ -1,0 +1,110 @@
+<div class="container container-table">
+  <div class="row vertical-center-row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <form
+            #signupForm="ngForm"
+            [formGroup]="registrationForm"
+            class="mx-auto"
+          >
+            <div class="form-group">
+              <h3 class="text-center">Log In</h3>
+              <label for="email" class="mt-3">Email address</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <!----  <fa-icon [icon]="faEnvelope"></fa-icon>-->
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  id="email"
+                  class="form-control"
+                  placeholder="example@mail.com"
+                  formControlName="email"
+                />
+              </div>
+              <div
+                *ngIf="
+                  registrationForm.get('email').touched &&
+                  registrationForm.get('email').errors?.required
+                "
+                class="text-danger"
+              >
+                Email is required
+              </div>
+              <div
+                *ngIf="registrationForm.get('email').errors?.pattern"
+                class="text-danger"
+              >
+                Email is invalid
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <!--- <fa-icon
+                      [icon]="fieldTextType ? faEye : faEyeSlash"
+                      (click)="toggleFieldTextType()"
+                    ></fa-icon>-->
+                    <i [class]="fieldTextType ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                     (click)="toggleFieldTextType()"></i>
+                  </span>
+                </div>
+                <input
+                  [type]="fieldTextType ? 'text' : 'password'"
+                  class="form-control"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+              </div>
+              <div
+                *ngIf="
+                  registrationForm.get('password').errors?.required &&
+                  registrationForm.get('password').touched
+                "
+                class="text-danger"
+              >
+                Password is required
+              </div>
+              <div *ngIf="registrationForm.get('password').errors?.pattern">
+                <div
+                  *ngIf="registrationForm.get('password').errors?.minlength"
+                  class="text-danger"
+                >
+                  password should have 8characters
+                </div>
+                <div
+                  *ngIf="registrationForm.get('password').errors?.pattern"
+                  class="text-danger"
+                >
+                  password should be a mixture of upper,lower letters and digits
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                (click)="validateCredentials(signupForm.value)"
+                class="btn btn-primary"
+                [disabled]="!registrationForm.valid"
+                [style.backgroundColor]="
+                  registrationForm.valid ? 'rgb(94,121,243)' : 'lightgrey'
+                "
+              >
+                Log In
+              </button>
+              <div *ngIf="!isValid" class="my-2">
+                <p class="text-danger">User not found! Please try again</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

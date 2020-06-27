@@ -1,0 +1,112 @@
+    $fa-font-path: "../node_modules/font-awesome/fonts";
+    //@import '../node_modules/font-awesome/scss/font-awesome.scss';
+    @import "~bootstrap/dist/css/bootstrap.css";
+    * {
+            font-family: 'Exo', sans-serif;
+            box-sizing: border-box;
+        }
+    html,body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: lightgray;
+    }
+    i{
+     font-family: FontAwesome;
+    }
+    
+    
+    .container-table {
+        display: table;
+        height: 100%;
+    }
+    
+    .vertical-center-row {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    .input-group {
+        width: 50vh;
+    }
+    
+    .col-12 {
+        padding: 0;
+    }
+    
+    .container {
+        padding: 0;
+    }
+    
+    .card{
+        min-height: 600px;
+        height: 600px;
+    }
+    .card-body {
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .profile-header {
+        transform: translateY(5rem);
+    }
+    
+    .nouser {
+        text-align: center;
+        min-height: 550px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    @media screen and (max-width: 500px) {
+        .card {
+            display: flex;
+            min-height: 100vh;
+            height: 100%;
+        }
+        .container {
+            margin: 0;
+        }
+        .input-group {
+            width: 40vh;
+        }
+        .profile-header {
+            transform: translateY(1rem);
+        }
+        .profile-header-1 {
+            transform: translateY(3rem);
+        }
+        .nouser {
+            height: 600px;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .input-group {
+            width: 100%;
+        }
+        .profile-header {
+            transform: translateY(1rem);
+        }
+        .profile-header-1 {
+            transform: translateY(3rem);
+        }
+        .nouser {
+            height: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 1024px) {
+        .input-group {
+            width: 100%;
+        }
+        .profile-header {
+            transform: translateY(1rem);
+        }
+        .profile-header-1 {
+            transform: translateY(3rem);
+        }
+        .nouser {
+            height: 100%;
+        }
+    }
