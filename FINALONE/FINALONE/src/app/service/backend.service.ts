@@ -26,9 +26,8 @@ export class BackendService implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {}
 
-  async login(user: string, passkey: string) {
+  async login(requestObj) {
     const instance = axios.create({});
-    const requestObj: LoginRequestModel = { Username: user, Password: passkey };
     try {
       let postResponse = await instance.post(
         '/api/auth/user/login',

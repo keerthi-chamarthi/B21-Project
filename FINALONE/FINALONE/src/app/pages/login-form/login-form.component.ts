@@ -2,6 +2,7 @@ import { BackendService } from 'src/app/service/backend.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginRequestModel } from 'src/app/models/requests';
 
 @Component({
   selector: 'app-login-form',
@@ -31,7 +32,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   async validateCredentials(data){
-    this.result = await this.backend.login(data.email, data.password);
+    const requestObj: LoginRequestModel = { Username: data.email, Password: data.password };
+    this.result = await this.backend.login(requestObj);
     // let details = new User();
     let details = this.result;
     console.log("login:",details);
@@ -40,5 +42,5 @@ export class LoginFormComponent implements OnInit {
     }
   //  this.router.navigateByUrl('/trade', { state: this.result });
   }
-
+ss
 }

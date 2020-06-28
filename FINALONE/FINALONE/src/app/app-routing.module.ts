@@ -10,8 +10,8 @@ import { AddressFormComponent } from './pages/address-form/address-form.componen
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginFormComponent, canActivate: [CheckGuard]},
-  { path: 'user', component: ResponsePageComponent},
-  {path: 'test', component: ResponsePageComponent},
+  { path: 'user', component: ResponsePageComponent,canActivate: [AuthGuard]},
+  {path: 'test', component: ResponsePageComponent , canActivate: [AuthGuard]},
   { path: 'address', component: AddressFormComponent,  canActivate: [AuthGuard] }
 
 ];
